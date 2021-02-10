@@ -13,11 +13,76 @@
 - When you run a GKE cluster, you also gain the benefit of advanced cluster management features that Google Cloud provides. These include:
 
   -Load-balancing for Compute Engine instances.
-
   -Node Pools to designate subsets of nodes within a cluster for additional flexibility.
+  -Automatic scaling of your cluster's node instance count.
+  -Automatic upgrades for your cluster's node software.
+  -Node auto-repair to maintain node health and availability.
+  -Cloud Logging and Monitoring for visibility into your cluster.
+## Setup 
+- You can list the active account name with this command:
 
- -Automatic scaling of your cluster's node instance count.
+```
+gcloud auth list
+```
 
- -Automatic upgrades for your cluster's node software.
- - Node auto-repair to maintain node health and availability.
- - Cloud Logging and Monitoring for visibility into your cluster.
+- You can list the project ID with this command:
+```
+gcloud config list project
+
+```
+
+- set your default compute zone to us-central1-a:
+
+```
+gcloud config set compute/zone us-central1-a
+
+```
+
+## Creating a GKE cluster
+```
+gcloud container clusters create my-cluster
+
+```
+## Get authentication credentials for the cluster
+- To authenticate the cluster run the following command, replacing [CLUSTER-NAME] with the name of your cluster:
+```
+gcloud container clusters get-credentials  my-cluster
+
+```
+
+## Deploying an application to the cluster
+- Run the following kubectl run command in Cloud Shell to create a new Deployment hello-server from the hello-app container image:
+```
+kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
+
+```
+
+- create a Kubernetes Service, which is a Kubernetes resource that lets you expose your application to external traffic, by running the following kubectl expose command:
+```
+kubectl expose deployment hello-server --type="LoadBalancer" --port 8080
+
+```
+
+- Inspect the hello-server Service by running kubectl get
+
+```
+kubectl get service hello-server
+
+```
+
+
+- View the application from your web browser using the external IP address with the exposed port:
+
+```
+http://[EXTERNAL-IP]:8080
+
+```
+## Clean up
+
+- Run the following to delete the cluster:
+```
+gcloud container clusters delete my-cluster
+```
+
+
+
