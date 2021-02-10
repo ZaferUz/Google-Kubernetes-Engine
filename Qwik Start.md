@@ -12,9 +12,13 @@
 ## Kubernetes on Google Cloud
 - When you run a GKE cluster, you also gain the benefit of advanced cluster management features that Google Cloud provides. These include:
 
--- Load-balancing for Compute Engine instances.
--- Node Pools to designate subsets of nodes within a cluster for additional flexibility.
+  --Load-balancing for Compute Engine instances.
+
+  --Node Pools to designate subsets of nodes within a cluster for additional flexibility.
+
 -- Automatic scaling of your cluster's node instance count.
+
 -- Automatic upgrades for your cluster's node software.
+
 -- Node auto-repair to maintain node health and availability.
 -- Cloud Logging and Monitoring for visibility into your cluster.
